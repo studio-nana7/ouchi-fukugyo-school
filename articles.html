@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>note記事一覧｜おうち副業の学校</title><style>
+*{box-sizing:border-box}body{margin:0;background:#faf8f4;color:#393c35;font-family:system-ui,-apple-system,'Hiragino Sans',Meiryo,sans-serif;line-height:1.75}main{max-width:680px;margin:auto;padding:0 20px 40px}header{text-align:center;padding:38px 0 26px;border-bottom:1px solid #dedbd2}header p{margin:0;color:#686b5d;font-size:15px}h1{font-size:27px;margin:8px 0 0;letter-spacing:.04em}h2{font-size:19px;margin:0 0 6px}section{margin-top:30px}section>p{font-size:14px;color:#686b5d;margin:0 0 14px}nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}nav a{flex:1;text-align:center;font-size:13px;padding:9px 5px;background:#eeeae1;border-radius:6px;color:#41483c;text-decoration:none;white-space:nowrap}input{width:100%;font:inherit;padding:12px;border:1px solid #c9cbbf;border-radius:7px;background:white;color:#393c35}ul{list-style:none;padding:0;margin:12px 0}li{margin:8px 0}.item{display:flex;align-items:center;gap:12px;background:white;border:1px solid #e0ded5;border-radius:8px;padding:15px;text-decoration:none;color:inherit;min-height:58px}.item:hover{background:#f0f2e9}.item:focus-visible,nav a:focus-visible,input:focus-visible{outline:3px solid #74856b;outline-offset:3px}.arrow{margin-left:auto;color:#66765d;font-size:20px}.number{font-size:12px;color:#65745b;display:block}.empty{padding:18px;background:#f0eee8;border-radius:8px;color:#62665c;font-size:14px}footer{text-align:center;border-top:1px solid #dedbd2;margin-top:36px;padding-top:20px;color:#686b5d;font-size:12px} [hidden]{display:none!important}section{scroll-margin-top:16px}
+</style></head><body><main><header><p>おうち副業の学校</p><h1>note記事一覧</h1></header><nav aria-label="記事の探し方"><a href="#sns">SNS紹介記事</a><a href="#magazines">マガジン別</a><a href="#all">一般公開記事</a></nav>
+<section id="sns"><h2>SNSでご紹介した記事</h2><p>Instagram・Threadsで気になった記事を、番号やタイトルから探せます。</p><label for="search" style="font-size:13px">記事番号・タイトル検索</label><input id="search" type="search" placeholder="例：001、占い" autocomplete="off"><ul id="articles"></ul><p class="empty" id="status" role="status">SNSで紹介した記事は、今後こちらに追加します。</p></section>
+<section id="magazines"><h2>マガジン別に探す</h2><p>興味のあるテーマを選んでご覧ください。</p><ul>
+<li><a class="item" href="https://note.com/webmarketing_20/m/mc9f0df25b54b">これからの女性の働き方<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m833b883c0632">おうち副業アイデア集<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m9fe569c98a41">AIプロデューサー＆副業キット<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/mc138c40b4f3e">おうち副業の始め方・実践ガイド<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m0a4be89342bb">おうち副業市場レポート<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m892d9b5f80ce">おうち副業開発プロジェクト100<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m93baeb8f484d">おうち副業プロデュース研究室<span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="item" href="https://note.com/webmarketing_20/m/m8005eb3d0345">おうち副業実験室<span class="arrow" aria-hidden="true">›</span></a></li>
+</ul></section><section id="all"><h2>一般公開記事</h2><p>最新の記事や、その他の公開記事はこちらから。</p><a class="item" href="https://note.com/webmarketing_20">noteの記事をすべて見る<span class="arrow" aria-hidden="true">›</span></a></section><footer>おうち副業の学校</footer></main><script>
+// ▼ SNS紹介記事の追加・編集はここだけ。番号は固定し、再利用しない。
+// 追加例： { number: "001", title: "記事タイトル", url: "https://note.com/..." },
+const articles = [
+];
+// ▲ 編集エリアここまで
+const search=document.getElementById('search'),list=document.getElementById('articles'),status=document.getElementById('status');
+function normalize(s){return String(s).normalize('NFKC').toLowerCase().trim()}
+function render(){const q=normalize(search.value);const found=articles.filter(a=>normalize(`No.${a.number} ${a.title}`).includes(q));list.replaceChildren();for(const a of found){const li=document.createElement('li'),link=document.createElement('a'),body=document.createElement('span'),num=document.createElement('span'),arrow=document.createElement('span');link.className='item';link.href=a.url;num.className='number';num.textContent='No.'+a.number;body.append(num,document.createTextNode(a.title));arrow.className='arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='›';link.append(body,arrow);li.append(link);list.append(li)}status.hidden=found.length>0;status.textContent=articles.length?'該当する記事がありません。':'SNSで紹介した記事は、今後こちらに追加します。';}search.addEventListener('input',render);render();
+</script></body></html>
