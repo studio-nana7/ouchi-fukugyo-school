@@ -17,9 +17,10 @@
 // 追加例： { number: "001", title: "記事タイトル", url: "https://note.com/..." },
 const articles = [
   {"number": "001", "title": "フリーランスオワコンの本当の意味と初心者参入の難しさ", "url": "https://note.com/webmarketing_20/n/nf2f49327717a"},
+  {"number": "002", "title": "「AI副業で月10万円」は本当？SNSで話題のAI副業9種類を公式データと収益構造から徹底分析", "url": "https://note.com/webmarketing_20/n/n2289085138f9"},
 ];
 // ▲ 編集エリアここまで
 const search=document.getElementById('search'),list=document.getElementById('articles'),status=document.getElementById('status');
 function normalize(s){return String(s).normalize('NFKC').toLowerCase().trim()}
-function render(){const q=normalize(search.value);const found=articles.filter(a=>normalize(`No.${a.number} ${a.title}`).includes(q));list.replaceChildren();for(const a of found){const li=document.createElement('li'),link=document.createElement('a'),body=document.createElement('span'),num=document.createElement('span'),arrow=document.createElement('span');link.className='item';link.href=a.url;num.className='number';num.textContent='No.'+a.number;body.append(num,document.createTextNode(a.title));arrow.className='arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='›';link.append(body,arrow);li.append(link);list.append(li)}status.hidden=found.length>0;status.textContent=articles.length?'該当する記事がありません。':'SNSで紹介した記事は、今後こちらに追加します。';}search.addEventListener('input',render);render();
+function render(){const q=normalize(search.value);const found=articles.filter(a=>normalize(`No.${a.number} ${a.title}`).includes(q)).sort((a,b)=>Number(b.number)-Number(a.number));list.replaceChildren();for(const a of found){const li=document.createElement('li'),link=document.createElement('a'),body=document.createElement('span'),num=document.createElement('span'),arrow=document.createElement('span');link.className='item';link.href=a.url;num.className='number';num.textContent='No.'+a.number;body.append(num,document.createTextNode(a.title));arrow.className='arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='›';link.append(body,arrow);li.append(link);list.append(li)}status.hidden=found.length>0;status.textContent=articles.length?'該当する記事がありません。':'SNSで紹介した記事は、今後こちらに追加します。';}search.addEventListener('input',render);render();
 </script></body></html>
